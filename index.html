@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letters for Aadu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffcce6 0%, #ffb3d9 50%, #ff99cc 100%);
+            font-family: 'Montserrat', sans-serif;
+            flex-direction: column;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dashed #ff66b2;
+            border-radius: 30px;
+            animation: pulse 2s infinite alternate;
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #d63384;
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        h1::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #ff66b2, transparent);
+            margin: 10px auto;
+        }
+        
+        #message {
+            font-size: 1.5rem;
+            color: #5a2a3a;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #ff66b2, #ff3385);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 50px;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 102, 178, 0.4);
+            font-weight: 600;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 102, 178, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff3385, #ff66b2);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        .btn:hover::after {
+            opacity: 1;
+        }
+        
+        .typing {
+            border-right: 2px solid #d63384;
+            white-space: normal;
+            overflow: hidden;
+            display: inline;
+            animation: blink 0.7s infinite;
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            opacity: 0;
+            font-size: 1.5rem;
+            color: rgba(255, 102, 178, 0.6);
+            animation: float 6s ease-in infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.02); opacity: 1; }
+        }
+        
+        .signature {
+            margin-top: 30px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="floating-hearts" id="hearts"></div>
+        <h1>For My Beloved Aadu</h1>
+        <p id="message">Press the button to receive a love letter written just for you, my darling Aadu...</p>
+        <button class="btn" onclick="generateLoveNote()">Send Love to Aadu</button>
+        <div class="signature">Forever Yours</div>
+    </div>
+
+    <script>
+        const loveNotes = [
+            "My dearest Aadu, you are the melody that plays in my heart every moment of every day. 💕",
+            "In a universe of infinite possibilities, finding you, my sweet Aadu, was destiny's greatest gift. ✨",
+            "Aadu, your smile is my favorite sunrise, your laughter my most cherished symphony. ☀️",
+            "I love you more than all the stars in the sky, Aadu. You are my eternal light. 🌌",
+            "Every beat of my heart whispers your name, Aadu. You are my everything. ❤️",
+            "With you, Aadu, ordinary moments become extraordinary. You're my living dream. 🍀",
+            "My sweet Aadu, you're the missing piece that makes my soul complete. 🧩",
+            "I promise to stand by your side always, Aadu, through every journey. 🤝",
+            "Aadu, my love for you is deeper than oceans, brighter than suns. 🌊",
+            "My perfect travel partner Aadu, every adventure is better with you. ✈️",
+            "Holding your hand, Aadu, feels like coming home to where I belong. 🏡",
+            "Darling Aadu, you're sweeter than honey, more precious than gold. 🍯",
+            "Aadu, even when apart, you're in every thought. I miss you. 💭",
+            "Your love, Aadu, painted my world in colors I never knew. 🎨",
+            "In your eyes, Aadu, I found the universe I want forever. 👁️",
+            "You are my today and tomorrow, Aadu. Time stops with you. ⏳",
+            "Like moon needs sun, my soul needs yours, Aadu. 🌙",
+            "Every love story is beautiful, but ours, Aadu, is my favorite. 📖",
+            "If choosing between breath and love, Aadu, I'd say 'I love you'. 💘",
+            "You're my endless dream, Aadu. Good morning, love. 🌄",
+            "Aadu, you are my sweetest cutie potato in the world! 🥔❤️",
+            "I'll never leave you, Aadu. You have my heart forever. ❤️",
+            "Aadu, I love you forever through all lifetimes. ❤️",
+            "Best travel partner Aadu, my favorite explorer. ❤️",
+            "I'll hold your hand forever, Aadu, never letting go. ❤️"
+        ];
+
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        function typeMessage(element, text, i = 0) {
+            if (i < text.length) {
+                element.innerHTML = text.substring(0, i+1) + '<span class="typing">|</span>';
+                setTimeout(() => typeMessage(element, text, i + 1), 30 + Math.random() * 40);
+            } else {
+                element.innerHTML = text;
+                createHearts();
+            }
+        }
+
+        function generateLoveNote() {
+            let messageElement = document.getElementById("message");
+            let randomIndex = Math.floor(Math.random() * loveNotes.length);
+            let newMessage = loveNotes[randomIndex];
+            messageElement.innerHTML = ""; 
+            typeMessage(messageElement, newMessage);
+            
+            // Create a burst of hearts on click
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = ['❤️', '💖', '💗', '💓'][Math.floor(Math.random() * 4)];
+                heart.style.left = Math.random() * 80 + 10 + '%';
+                heart.style.bottom = '0';
+                heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                container.appendChild(heart);
+                
+                // Remove hearts after animation
+                setTimeout(() => {
+                    heart.remove();
+                }, 6000);
+            }
+        }
+
+        // Initialize floating hearts
+        window.onload = createHearts;
+    </script>
+</body>
+</html>
